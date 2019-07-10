@@ -3,6 +3,7 @@
 add_library(mylib
 
     ./main.cpp
+    ./List.hpp
     # TODO ADD SOURCE HERE
     )
 

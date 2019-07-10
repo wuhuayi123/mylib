@@ -15,5 +15,5 @@ if(WIN32)
     set(CMAKE_VS_INCLUDE_INSTALL_TO_DEFAULT_BUILD TRUE)
 endif()
 
-add_subdirectory(${PROJECT_SOURCE_DIR}/src/mylib)
+#add_subdirectory(${PROJECT_SOURCE_DIR}/src/mylib)
 add_subdirectory(${PROJECT_SOURCE_DIR}/tests)

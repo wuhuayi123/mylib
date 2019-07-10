@@ -4,5 +4,5 @@ add_executable (unit-test
     # TODO ADD SOURCE HERE
     )
 
-target_link_libraries (unit-test mylib)
+#target_link_libraries (unit-test mylib)
 INSTALL(TARGETS unit-test RUNTIME DESTINATION bin)
