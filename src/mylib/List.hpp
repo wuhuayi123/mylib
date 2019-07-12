@@ -9,7 +9,7 @@ public:
     T data_;
     Node* next_;
     Node(T data) : next_(nullptr), data_(data){};
-    ~Node();
+    ~Node(){};
 };
 
 template <class T>
@@ -28,15 +28,12 @@ public:
 
 public:
     void Echo();
-    bool InsertAfter(const Node<T>* item);
+    bool InsertAfter(int position, Node<T>* item);
     bool Push(T data);
-    bool DeleteAfter();
+    bool DeleteAfter(int position);
     unsigned int Length();
-    unsigned int Position();
     Node<T>* Search(T);
     bool Clear();
-    Node<T>* Cur();
-    Node<T>* Next();
 };
 
 template <class T>
@@ -82,41 +79,47 @@ bool List<T>::Push(T data) {
 }
 
 template <class T>
-bool List<T>::InsertAfter(const Node<T>* item) {}
+bool List<T>::InsertAfter(int position, Node<T>* item) {
+    auto pos = head_;
+    for (auto count = 0; count < length_; count++) {
+        if (count == position) {
+            auto pre_next = pos->next_;
+            pos->next_ = item;
+            item->next_ = pre_next;
+            return true;
+        };
+        pos = pos->next_;
+    }
+
+    tail_->next_ = item;
+    tail_ = item;
+}
 
 template <class T>
-bool List<T>::DeleteAfter() {}
+bool List<T>::DeleteAfter(int position) {
+    auto pos = head_;
+    for (auto count = 0; count < length_; count++) {
+        if (count == position) {
+            auto pre_next = pos->next_;
+            pos->next_ = pre_next->next_;
+            delete (pre_next);
+            return true;
+        };
+        pos = pos->next_;
+    }
+
+    return false;
+}
 
 template <class T>
 unsigned int List<T>::Length() {
     return length_;
 }
 
-// Todo
-template <class T>
-Node<T>* List<T>::Cur() {
-    if (cur_) {
-        return cur_;
-    } else {
-        return head_;
-    }
-}
-
-// Todo
-template <class T>
-Node<T>* List<T>::Next() {
-    if (!cur_) {
-        return nullptr;
-    } else {
-        return cur_->next_;
-    }
-}
-
 template <class T>
 Node<T>* List<T>::Search(T data) {
-    auto pos = head_;
+    Node<T>* pos = head_;
     for (auto count = 0; count < length_; count++) {
-        std::cout << pos->data_ << std::endl;
         if (pos->data_ == data) {
             return pos;
         };

@@ -18,15 +18,18 @@ int main(int count, char** argv) {
     list.Push(7);
     list.Push(8);
     list.Echo();
-
-    auto item = list.Search(3);
+    std::cout << "-----------test serach---------" << std::endl;
+    auto item = list.Search(4);
     item->data_ = 19;
     list.Echo();
 
-    list.InsertAfter(item);
+    std::cout << "---------test insert-- ---------" << std::endl;
+    auto item_insert = new Node<int>(33);
+    list.InsertAfter(2, item_insert);
     list.Echo();
 
-    list.DeleteAfter();
+    std::cout << " -----------test del-- ------- " << std::endl;
+    list.DeleteAfter(3);
     list.Echo();
     return 0;
 }
